@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            /* float: left; */
+        }
+        .top, .bottom, .top2, .bottom2 {
+            width: 100px;
+            height: 100px;
+        }
+        .top {
+            margin-bottom: 20px;
+            border: 1px solid red;
+        }
+        .bottom {
+            margin-top: 20px;
+            border: 1px solid salmon;
+        }
+        .top2 {
+            margin-bottom: 20px;
+            border: 1px solid sandybrown;
+        }
+        .bottom2 {
+            /* margin-top: 20px; */
+            border: 1px solid olive;
+        }
+        dl {
+            position: relative;
+            border: 1px solid #000;
+            width: 100%;
+        }
+        dt {
+            position: relative;
+        }
+        dd {
+            position: absolute;
+            right: 0;
+            margin: -1.2rem 0 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">33</div>
+        <div class="bottom">44</div>
+    </div>
+    <div class="top2"></div>
+    <div class="bottom2"></div>
+    <dl>
+        <dt>手机系统</dt>
+        <dd>Android</dd>
+        <dt>登录方式</dt>
+        <dd>互联登录</dd>
+        <dt>绑定时间</dt>
+        <dd>2019-01-02 11:10</dd>
+        <dt>绑定状态</dt>
+        <dd>有效</dd>
+    </dl>
+</body>
+
+</html>
