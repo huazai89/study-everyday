@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .container {
+            border: 1px solid #aaa;
+            width: 800px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>H5拖拽测试</h2>
+    <div class="container" id="content" ondrop="drop(event)" ondragover="allowDrop(event)" ondragend="dragEnd(event)"></div>
+    <div class="container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragend="dragEnd(event)" ondragleave="dragLeave(event)">
+        <img id="checka" src="../images/a.png" draggable="true" ondragstart="drag(event)">
+        <img id="checkb" src="../images/b.png" draggable="true" ondragstart="drag(event)">
+    </div>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.target.style.opacity = .5;
+            ev.dataTransfer.setData("Text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+           
+        }
+        function dragEnd(ev) {
+            ev.target.style.opacity = 1;
+        }
+        function dragLeave(ev) {
+            var data = ev.dataTransfer.getData("Text");
+            document.getElementById(ev.target.id).className = data;
+            document.getElementById(ev.target.id).innerText = data;
+            ev.preventDefault();
+        }
+    </script>
+</body>
+
+</html>
