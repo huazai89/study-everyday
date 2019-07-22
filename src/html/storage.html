@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="storageLocal()">test localStorage</button>
+    <h2 id="session-test"></h2>
+    <script>
+        function storageLocal() {
+            let obj = {
+                name: 'zhangming',
+                age: 23,
+                id: 10012
+            }
+            localStorage.stroageKey = JSON.stringify(obj);
+            // localStorage.setItem('stroageKey', JSON.stringify(obj))
+            if(sessionStorage.clickCount) {
+                sessionStorage.clickCount = Number(sessionStorage.clickCount) + 1;
+            } else {
+                sessionStorage.setItem('clickCount', 1)
+                // sessionStorage.clickCount = 1;
+            }
+            document.getElementById('session-test').innerHTML = `click count is ${sessionStorage.clickCount}`;
+        }
+    </script>
+</body>
+</html>
