@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>createTable2.html</title>
+	<style type="text/css">
+		table {
+			/* border: #00ffff solid 2px; */
+			border-collapse: collapse;
+		}
+
+		td {
+			border: #8080ff solid 2px;
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="div1"></div>
+	<p id="test-p" class="test-c">1234567</p>
+	<button onclick="dis()">显示</button>
+	<button onclick="mis()">隐藏</button>
+
+	<select id="cols-select">
+	</select>
+	<button onclick="resetCols()">恢复列</button>
+	<!--table操作-->
+	<script type="text/javascript">
+		let p = document.getElementById('test-p')
+		let pc = document.getElementsByClassName('test-c')[0]
+		let deleCols = ['全部'] // 全局删除的列
+
+		function dis() {
+			pc.style.display = 'block'
+		}
+
+		function mis() {
+			pc.style.display = 'none'
+		}
+		// 测试数据
+		let tableDatas = [{
+				key1: '姓名',
+				key2: 'ID',
+				key3: '性别',
+				key4: '公司',
+				key5: '年纪',
+				key6: '工作',
+			},
+			{
+				name: 'zhang1',
+				id: 1,
+				sex: 'F',
+				dep: 'JD',
+				age: 24,
+				work: 'FE'
+			},
+			{
+				name: 'wang1',
+				id: 11,
+				sex: 'M',
+				dep: 'AL',
+				age: 25,
+				work: 'JAVA'
+			},
+			{
+				name: 'zhaosi',
+				id: 33,
+				sex: 'F',
+				dep: 'BAIDU',
+				age: 24,
+				work: 'AI'
+			},
+			{
+				name: 'wangwu',
+				id: 1456,
+				sex: 'F',
+				dep: 'TengXu',
+				age: 24,
+				work: 'PHP'
+			},
+			{
+				name: 'wang33',
+				id: 1,
+				sex: 'F',
+				dep: 'XIAOMI',
+				age: 24,
+				work: 'Python'
+			}
+		]
+		let tableNode;
+		let col = 0;
+		window.onload = function createTable() {
+			selects()
+			tableNode = document.createElement("table"); //获得对象
+			tableNode.setAttribute("id", "table")
+
+			// 开始创建
+			for (let x = 0; x < tableDatas.length; x++) {
+				var trNode = tableNode.insertRow();
+				let tdindex = 1;
+				for (let key in tableDatas[x]) {
+					var tdNode = trNode.insertCell();
+					if (0 === x) {
+						tdNode.setAttribute('onclick', `delCols()`)
+						col++;
+					}
+
+					tdNode.setAttribute('class', `tdclass-${tdindex}`)
+					tdindex++;
+					tdNode.innerHTML = tableDatas[x][key];
+				}
+			}
+			document.getElementById("div1").appendChild(tableNode); //添加到那个位置
+		}
+
+		// 一行的cells的长度就是列的个数
+		function delCols() {
+
+			//获得table对象
+			// var tab = document.getElementById("table");
+			let delcol = event.srcElement.cellIndex + 1
+			let missCol = document.getElementsByClassName(`tdclass-${delcol}`)
+			deleCols.push(delcol);
+			selects();
+			for (let i = 0; i < missCol.length; i++) {
+				missCol[i].style.display = 'none'
+			}
+
+			// console.info(event.srcElement.cellIndex + 1)
+			// console.info(tab.rows[0].cells.length)
+			// if (tab == null) {
+			// 	alert("删除的表不存在！！");
+			// 	return;
+			// }
+			// //检查是否可靠
+			// if (isNaN(delcol)) {
+			// 	alert("数据异常");
+			// 	return;
+			// }
+			// if (!(delcol >= 1 && delcol <= tab.rows[0].cells.length)) {
+			// 	alert("您要删除的行不存在！！");
+			// 	return;
+			// }
+			// for (var x = 0; x < tab.rows.length; x++) { //所有的行
+			// 	tab.rows[x].deleteCell(delcol - 1);
+			// }
+		}
+
+		function selects() {
+			let sels = document.getElementById('cols-select');
+			let op = new Option(deleCols[deleCols.length - 1], deleCols.length - 1);
+			sels.options.add(op)
+			sels[0].selected = true;
+		}
+
+		function removeSelect() {
+			let sels = document.getElementById('cols-select');
+			var index = sels.selectedIndex; // 选中索引
+			var text = sels.options[index].text; // 选中文本     输出张三等汉字信息
+			console.info(index, text, '===')
+			if ('全部' != text && text) {
+				sels.remove(index)
+			} else {
+				deleCols.forEach((item, index) => {
+					sels.remove(1)
+				})
+			}
+		}
+
+		function resetCols() {
+			let sels = document.getElementById('cols-select');
+			var index = sels.selectedIndex; // 选中索引
+			var text = sels.options[index].text;
+			let missCol = document.getElementsByClassName(`tdclass-${parseInt(text)}`)
+			removeSelect();
+			if ('全部' != text && text) {
+				for (let i = 0; i < missCol.length; i++) {
+					missCol[i].style.display = ''
+				}
+			} else {
+				deleCols.forEach((item, index) => {
+					let missCol = document.getElementsByClassName(`tdclass-${parseInt(item)}`)
+					if ('全部' != item) {
+						for (let i = 0; i < missCol.length; i++) {
+							missCol[i].style.display = ''
+						}
+					}
+
+				})
+			}
+
+		}
+
+		// 获取选择列表数据
+		// function getvalue(obj) {
+		// 	SELECTINDEX = obj.options[obj.selectedIndex].value
+		// 	COLINDEX = obj.options[obj.selectedIndex].text
+		// }
+	</script>
+</body>
+
+</html>
