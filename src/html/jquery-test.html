@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+	<table id="class-table" border="solid" width="500px" height="150px" cellspacing="0" cellpadding="10" frame="solid"
+		rules="solid">
+		<tr>
+			<td>P</td>
+			<td>Q</td>
+			<td>W</td>
+			<td>Z</td>
+		</tr>
+		<tr>
+			<td>A</td>
+			<td>B</td>
+			<td>C</td>
+			<td>D</td>
+		</tr>
+		<tr>
+			<td>E</td>
+			<td>F</td>
+			<td>G</td>
+			<td>H</td>
+		</tr>
+		<tr>
+			<td>I</td>
+			<td>J</td>
+			<td>K</td>
+			<td>L</td>
+		</tr>
+	</table>
+
+	<script>
+		// console.info($('#class-table tr'))
+		// $('#class-table tr').each(function (index, item) {
+		// 	var name = $(item).find('td').eq(1).text();
+		// 	console.info(name)
+		// })
+		const tab = document.getElementById('class-table');
+		let rows = tab.rows,
+			len = rows.length,
+			i = 0;
+		for (i = 0; i < len; i++) {
+			console.info(rows[i].cells[1].innerText)
+		}
+	</script>
+</body>
+
+</html>
