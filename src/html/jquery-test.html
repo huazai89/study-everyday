@@ -13,33 +13,47 @@
 	<table id="class-table" border="solid" width="500px" height="150px" cellspacing="0" cellpadding="10" frame="solid"
 		rules="solid">
 		<tr>
-			<td>P</td>
+			<td data_obj="1">P</td>
 			<td>Q</td>
 			<td>W</td>
 			<td>Z</td>
 		</tr>
 		<tr>
-			<td>A</td>
+			<td data_obj="1">A</td>
 			<td>B</td>
 			<td>C</td>
 			<td>D</td>
 		</tr>
 		<tr>
-			<td>E</td>
+			<td data_obj="1">E</td>
 			<td>F</td>
 			<td>G</td>
 			<td>H</td>
 		</tr>
 		<tr>
-			<td>I</td>
+			<td data_obj="1">I</td>
 			<td>J</td>
 			<td>K</td>
 			<td>L</td>
 		</tr>
 	</table>
 
+	<div id="text-dev" value="123" data_obj="1">344</div>
+
 	<script>
-		// console.info($('#class-table tr'))
+		localStorage.testKey = {
+			name: 'zhangsna',
+			id: 123
+		}
+		localStorage.testArr = [1, 3, 5]
+
+		console.info(localStorage.getItem('testArr').split(','))
+		// let tt = document.get
+		// console.info(tt)
+		// console.info($("[data_obj='1']")[0].innerHTML)
+		$(`[data_obj=${1}]`).each(function (index, item) {
+			console.info(item.innerHTML)
+		})
 		// $('#class-table tr').each(function (index, item) {
 		// 	var name = $(item).find('td').eq(1).text();
 		// 	console.info(name)
@@ -49,7 +63,7 @@
 			len = rows.length,
 			i = 0;
 		for (i = 0; i < len; i++) {
-			console.info(rows[i].cells[1].innerText)
+			// console.info(rows[i].cells[1].innerText)
 		}
 	</script>
 </body>
