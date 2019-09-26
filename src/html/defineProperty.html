@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>请输入：</label><input placeholder="输入参数" id="params-in" />
+    <input id="text-in"></input>
+
+    <script>
+        let obj = {};
+        let val = '';
+        let paramIn = document.getElementById('params-in');
+        let textIn = document.getElementById('text-in');
+
+
+        Object.defineProperty(obj, 'param', {
+            get: function () {
+                console.info(val)
+                return val
+            },
+            set: function (newVal) {
+                val = newVal;
+                textIn.value = newVal;
+                paramIn.value = newVal;
+            }
+        })
+        paramIn.addEventListener('input', e => {
+            obj.param = e.target.value;
+        })
+
+        textIn.addEventListener('input', e => {
+            obj.param = e.target.value;
+        })
+    </script>
+</body>
+
+</html>
